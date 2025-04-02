@@ -1056,7 +1056,7 @@
             notSelectable = true;
         }
     }
-    if (!notSelectable && model.asset.mediaType == PHAssetMediaTypeVideo && model.asset.duration > tzImagePickerVc.videoMaximumDuration) {
+    if (!notSelectable && tzImagePickerVc.canSelectVideoMaxDuration > 0 && model.asset.mediaType == PHAssetMediaTypeVideo && model.asset.duration > tzImagePickerVc.canSelectVideoMaxDuration) {
             notSelectable = true;
     }
     return notSelectable;

@@ -128,6 +128,8 @@
 @property(nonatomic, assign) BOOL allowTakeVideo;
 /// Default value is 10 minutes / 视频最大拍摄时间，默认是10分钟，单位是秒
 @property (assign, nonatomic) NSTimeInterval videoMaximumDuration;
+/// /// Default value is 0, 不限制 / 可选择的视频最大时长。不设置为0表示不限制
+@property (nonatomic, assign) NSTimeInterval canSelectVideoMaxDuration;
 /// Customizing UIImagePickerController's other properties, such as videoQuality / 定制UIImagePickerController的其它属性，比如视频拍摄质量videoQuality
 @property (nonatomic, copy) void(^uiImagePickerControllerSettingBlock)(UIImagePickerController *imagePickerController);
 
