@@ -1056,6 +1056,9 @@
             notSelectable = true;
         }
     }
+    if (!notSelectable && model.asset.mediaType == PHAssetMediaTypeVideo && model.asset.duration > tzImagePickerVc.videoMaximumDuration) {
+            notSelectable = true;
+    }
     return notSelectable;
 }
 
