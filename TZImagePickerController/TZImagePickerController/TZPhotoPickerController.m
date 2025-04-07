@@ -626,7 +626,8 @@ static CGFloat itemMargin = 5;
     BOOL notSelectable = [TZCommonTools isAssetNotSelectable:model tzImagePickerVc:tzImagePickerVc];
     if (notSelectable && tzImagePickerVc.showPhotoCannotSelectLayer && !model.isSelected) {
         cell.cannotSelectLayerButton.backgroundColor = tzImagePickerVc.cannotSelectLayerColor;
-        cell.cannotSelectLayerButton.hidden = YES;
+        cell.cannotSelectLayerButton.hidden = NO;
+        cell.cannotSelectLayerButton.userInteractionEnabled = false;
     } else {
         cell.cannotSelectLayerButton.hidden = YES;
     }
