@@ -133,6 +133,8 @@
 /// Customizing UIImagePickerController's other properties, such as videoQuality / 定制UIImagePickerController的其它属性，比如视频拍摄质量videoQuality
 @property (nonatomic, copy) void(^uiImagePickerControllerSettingBlock)(UIImagePickerController *imagePickerController);
 
+@property (nonatomic, copy) void(^videoDurationLimitCallback)(void);
+
 /// 首选语言，如果设置了就用该语言，不设则取当前系统语言。
 /// 支持zh-Hans、zh-Hant、en、vi等值，详见TZImagePickerController.bundle内的语言资源
 @property (copy, nonatomic) NSString *preferredLanguage;

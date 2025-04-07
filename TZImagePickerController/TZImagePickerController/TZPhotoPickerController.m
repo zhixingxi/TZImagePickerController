@@ -626,7 +626,7 @@ static CGFloat itemMargin = 5;
     BOOL notSelectable = [TZCommonTools isAssetNotSelectable:model tzImagePickerVc:tzImagePickerVc];
     if (notSelectable && tzImagePickerVc.showPhotoCannotSelectLayer && !model.isSelected) {
         cell.cannotSelectLayerButton.backgroundColor = tzImagePickerVc.cannotSelectLayerColor;
-        cell.cannotSelectLayerButton.hidden = NO;
+        cell.cannotSelectLayerButton.hidden = YES;
     } else {
         cell.cannotSelectLayerButton.hidden = YES;
     }
@@ -635,6 +635,14 @@ static CGFloat itemMargin = 5;
     __weak typeof(self) weakSelf = self;
     __weak typeof(_numberImageView.layer) weakLayer = _numberImageView.layer;
     cell.didSelectPhotoBlock = ^(BOOL isSelected) {
+        
+        if (notSelectable) {
+            if (tzImagePickerVc.videoDurationLimitCallback) {
+                tzImagePickerVc.videoDurationLimitCallback();
+            }
+            return;
+        }
+        
         __strong typeof(weakCell) strongCell = weakCell;
         __strong typeof(weakSelf) strongSelf = weakSelf;
         __strong typeof(weakLayer) strongLayer = weakLayer;
@@ -711,6 +719,13 @@ static CGFloat itemMargin = 5;
         index -= [self getAllCellCount] - _models.count;
     }
     TZAssetModel *model = _models[index];
+    BOOL notSelectable = [TZCommonTools isAssetNotSelectable:model tzImagePickerVc:tzImagePickerVc];
+    if (notSelectable) {
+        if (tzImagePickerVc.videoDurationLimitCallback) {
+            tzImagePickerVc.videoDurationLimitCallback();
+        }
+        return;
+    }
     if (model.type == TZAssetModelMediaTypeVideo && !tzImagePickerVc.allowPickingMultipleVideo) {
         if (tzImagePickerVc.selectedModels.count > 0) {
             TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
